@@ -5,7 +5,7 @@
 * Gašper Verč
 * Anja Petković
 * Matija Pretnar
-* Adi Smolar
+* Lojze Slak
 
 ## Opis
 
