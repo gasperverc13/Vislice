@@ -149,18 +149,5 @@ def pozeni_vmesnik():
             if igra == IZHOD:
                 break
             
-
-
-
+            
 pozeni_vmesnik()
-
-
-
-
-
-#  _____
-#  |   |
-#  |   o
-#  |  /|\
-#  |  / \
-# _|______ 
