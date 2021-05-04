@@ -21,7 +21,16 @@ def nova_igra():
 @bottle.get('/igra/<id_igre:int>/')
 def pokazi_igro(id_igre):
     igra, stanje = vislice.igre[id_igre]
-    return bottle.template('igra.tpl', igra=igra)
+    return bottle.template('igra.tpl', igra=igra, id_igre=id_igre, stanje=stanje)
+
+
+@bottle.post('/igra/<id_igre:int>/')
+def ugibaj(id_igre):
+    crka = bottle.request.forms.getunicode('crka')
+    # 'crka' je enak kot v form v templatu
+    vislice.ugibaj(id_igre, crka)
+    bottle.redirect('/igra/{}/'.format(id_igre))
+    # id_igre gre v {}
 
 
 @bottle.get('/img/<picture>')

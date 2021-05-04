@@ -1,4 +1,4 @@
-STEVILO_DOVOLJENIH_NAPAK = 10
+STEVILO_DOVOLJENIH_NAPAK = 9
 PRAVILNA_CRKA, PONOVLJENA_CRKA, NAPACNA_CRKA = '+', 'O', '-'
 ZMAGA, PORAZ = 'W', 'L'
 ZACETEK = 'Z'
@@ -102,5 +102,5 @@ class Vislice:
         igra, _ = self.igre[id_igre]
         stanje = igra.ugibaj(crka)
         self.igre[id_igre] = (igra, stanje)
-        
+
 
