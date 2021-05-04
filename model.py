@@ -1,6 +1,7 @@
 STEVILO_DOVOLJENIH_NAPAK = 10
 PRAVILNA_CRKA, PONOVLJENA_CRKA, NAPACNA_CRKA = '+', 'O', '-'
 ZMAGA, PORAZ = 'W', 'L'
+ZACETEK = 'Z'
 
 class Igra:
     def __init__(self, geslo, crke):
@@ -72,9 +73,34 @@ def nova_igra():
     return Igra(geslo, [])
 
 
-
-
 # testno_geslo = 'DEŽUJE'
 # testne_crke = ['A', 'I', 'D', 'K', 'J', 'U']
 # igra = Igra(testno_geslo, testne_crke)
 # print(testno_geslo)
+
+class Vislice:
+    def __init__(self):
+        self.igre = {}
+        # v tem slovarju hranimo vse igre, ki smo jih začeli
+
+    def prost_id_igre(self):
+        if len(self.igre) == 0:
+            return 0
+            # ker bi prišlo do napake
+        else:
+            return max(self.igre.keys()) + 1
+            # ID številski, največjemu prištejemo 1 za naslednjega
+    
+    def nova_igra(self):
+        id_igre = self.prost_id_igre()
+        # ker je v istem classu, uporabimo self
+        igra = nova_igra()
+        self.igre[id_igre] = (igra, ZACETEK)
+        return id_igre
+
+    def ugibaj(self, id_igre, crka):
+        igra, _ = self.igre[id_igre]
+        stanje = igra.ugibaj(crka)
+        self.igre[id_igre] = (igra, stanje)
+        
+
