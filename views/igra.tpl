@@ -1,39 +1,35 @@
 % import model
+% rebase('base.tpl')
 
-<!DOCTYPE html>
-<html>
+<h1>Vislice</h1>
 
-<body>
+<blockquote>
+    Vislice so najboljša igra za preganjanje dolgčasa (poleg tetrisa).
+    <small>Študentje</small>
+</blockquote>
 
-	<h1>Vislice</h1>
+<h2>{{igra.pravilni_del_gesla()}}</h2>
 
-	<blockquote>
-		Vislice so najboljša igra za preganjanje dolgčasa (poleg tetrisa).
-		<small>Študentje</small>
-	</blockquote>
+<p>Nepravilni ugibi: <b>{{igra.nepravilni_ugibi()}}</b></p>
 
-	<h2>{{igra.pravilni_del_gesla()}}</h2>
+<img src="/img/{{igra.stevilo_napak()}}.jpg" alt="obesanje">
 
-	<p>Nepravilni ugibi: <b>{{igra.nepravilni_ugibi()}}</b></p>
+% if stanje == model.ZMAGA:
+<h1>ZMAGA</h1>
+<form action="/nova-igra/" method="post">
+    <button type="submit">Nova igra</button>
+</form>
 
-	<img src="/img/{{igra.stevilo_napak()}}.jpg" alt="obesanje">
-	% if stanje == model.ZMAGA:
-	<h1>ZMAGA</h1>
-	<form action="/igra/" method="post">
-		<button type="submit">Nova igra</button>
-	</form>
-	% elif stanje == model.PORAZ:
-	<h1>PORAZ</h1>
-	<p>Pravilno geslo: <b>{{igra.geslo}}</b></p>
-	<form action="/igra/" method="post">
-		<button type="submit">Nova igra</button>
-	</form>
+% elif stanje == model.PORAZ:
 
-	% else:
-	<form action="/igra/{{id_igre}}/" method="POST">
-		Črka: <input type="text" name="crka" />
-		<button type="submit">Ugibaj</button>
-	</form>
-</body>
+<h1>PORAZ</h1>
+<p>Pravilno geslo: <b>{{igra.geslo}}</b></p>
+<form action="/nova-igra/" method="post">
+    <button type="submit">Nova igra</button>
+</form>
 
-</html>
+% else:
+<form action="/igra/" method="POST">
+    Črka: <input type="text" name="crka" />
+    <button type="submit">Ugibaj</button>
+</form>
